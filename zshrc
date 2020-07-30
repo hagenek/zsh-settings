@@ -97,6 +97,10 @@ source /home/hagenek/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #   export EDITOR='mvim'
 # fi
 
+#Fixing backgruound colors
+
+export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
