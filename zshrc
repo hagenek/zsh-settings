@@ -1,9 +1,8 @@
- 
-# If you come from bash you might have to change your $PATH.
+ # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+export PATH="/Users/georgekeberg/.deno/bin:$PATH"
 # Path to your oh-my-zsh installation.
-export ZSH="/users/hagenek/.oh-my-zsh"
+export ZSH="/users/georgekeberg/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -81,7 +80,7 @@ plugins=(
   cloudfoundry
   ) 
 
-source /Users/hagenek/.oh-my-zsh/oh-my-zsh.sh
+source /Users/georgekeberg/.oh-my-zsh/oh-my-zsh.sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
@@ -151,3 +150,8 @@ alias grh="git reset HEAD~" # last commit
 alias gac="git add . && git commit -a -m "
 alias gsu="git gpush --set-upstream origin "
 alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export DENO_INSTALL="/Users/georgekeberg/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+export DVM_DIR="/Users/georgekeberg/.dvm"
+export PATH="$DVM_DIR/bin:$PATH"
