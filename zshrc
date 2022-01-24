@@ -1,15 +1,25 @@
- # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/Users/georgekeberg/.deno/bin:$PATH"
-# Path to your oh-my-zsh installation.
-export ZSH="/users/georgekeberg/.oh-my-zsh"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Path to your oh-my-zsh installation.
+export ZSH="/users/hagenek/.oh-my-zsh"
+export PATH="/users/hagenek/.emacs.d/bin:$PATH"
+PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
+ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_DISABLE_COMPFIX=true
 
 # Set list of themes to pick from when loading at random
@@ -35,7 +45,7 @@ ZSH_DISABLE_COMPFIX=true
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -44,10 +54,10 @@ ZSH_DISABLE_COMPFIX=true
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -78,9 +88,9 @@ plugins=(
   last-working-dir
   web-search
   cloudfoundry
-  ) 
+  )
 
-source /Users/georgekeberg/.oh-my-zsh/oh-my-zsh.sh
+source /Users/hagenek/.oh-my-zsh/oh-my-zsh.sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
@@ -128,8 +138,15 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 alias deleteDSFiles="find . -name '.DS_Store' -type f -delete"
 alias npm-update="npx npm-check -u";
 alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
- 
+
 eval $(thefuck --alias)
+
+#Misc aliases
+alias ws="open -na 'WebStorm.app'"
+alias vim='nvim'
+alias pn='pnpm'
+
+# <<< conda initialize <<<
 
 function gc { git commit -m "$@"; }
 alias gcm="git checkout master";
@@ -150,8 +167,29 @@ alias grh="git reset HEAD~" # last commit
 alias gac="git add . && git commit -a -m "
 alias gsu="git gpush --set-upstream origin "
 alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export DENO_INSTALL="/Users/georgekeberg/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-export DVM_DIR="/Users/georgekeberg/.dvm"
-export PATH="$DVM_DIR/bin:$PATH"
+alias gcpo="gac \"Updated\" && gpush"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/hagenek/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hagenek/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/hagenek/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hagenek/google-cloud-sdk/completion.zsh.inc'; fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/hagenek/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/hagenek/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/Users/hagenek/mambaforge/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/hagenek/mambaforge/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+alias fed='vim ~/.zshrc'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
