@@ -1,6 +1,4 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-#Fig pre block. Keep at the top of this file.
+export PATH=$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -95,6 +93,8 @@ alias ws="open -na 'WebStorm.app'"
 function kipo() {kill -9 $(lsof -ti:“$@“)}
 alias vim='nvim'
 alias pn='pnpm'
+alias bdr='bob docker removeall'
+function grm { git reset $(git merge-base "$@"); }
 
 function gc { git commit -m "$@"; }
 alias gcm="git checkout master";
@@ -105,6 +105,7 @@ alias gf="git fetch";
 alias gfa="git fetch --all";
 alias gf="git fetch origin";
 alias gpush="git push";
+alias cdmo="cd /Users/georg.ekeberg/git/awl-monorepo/apps/team-okonomistyring/kundefront-pm-minokonomi"
 alias gd="git diff";
 alias ga="git add .";
 alias gb="git branch";
@@ -181,3 +182,4 @@ export PATH="$PNPM_HOME:$PATH"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+[ -f /Users/georg.ekeberg/opt/etc/shrc ] && . /Users/georg.ekeberg/opt/etc/shrc
