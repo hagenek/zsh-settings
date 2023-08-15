@@ -86,8 +86,6 @@ alias deleteDSFiles="find . -name '.DS_Store' -type f -delete"
 alias npm-update="npx npm-check -u";
 alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
 
-eval $(thefuck --alias)
-
 #Misc aliases
 alias ws="open -na 'WebStorm.app'"
 function kipo() {kill -9 $(lsof -ti:“$@“)}
@@ -95,6 +93,7 @@ alias vim='nvim'
 alias pn='pnpm'
 alias bdr='bob docker removeall'
 function grm { git reset $(git merge-base "$@"); }
+alias brew='brew --appdir ~/Applications'
 
 function gc { git commit -m "$@"; }
 alias gcm="git checkout master";
