@@ -1,4 +1,6 @@
 export PATH=$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:/Users/georg.ekeberg/.scripts"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -11,6 +13,11 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+export DOCKER_BUILDKIT=0                                                                                                                                                    
+export COMPOSE_DOCKER_CLI_BUILD=0
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -66,6 +73,9 @@ plugins=(
   git
   bundler
   dotenv
+  zsh-syntax-highlighting
+  fast-syntax-highlighting 
+  zsh-autocomplete
   rake
   last-working-dir
   )
@@ -93,10 +103,12 @@ alias vim='nvim'
 alias pn='pnpm'
 alias bdr='bob docker removeall'
 function grm { git reset $(git merge-base "$@"); }
-alias brew='brew --appdir ~/Applications'
+alias nr="npm run"
+alias docker-run='docker run --network=bridge'
 
 function gc { git commit -m "$@"; }
 alias gcm="git checkout master";
+alias gamp="git add . && git commit --amend --no-edit && gpush -f";
 alias gs="git status";
 alias gpull="git pull";
 alias gsw="git switch"
@@ -106,7 +118,7 @@ alias gf="git fetch origin";
 alias gpush="git push";
 alias cdmo="cd /Users/georg.ekeberg/git/awl-monorepo/apps/team-okonomistyring/kundefront-pm-minokonomi"
 alias gd="git diff";
-alias ga="git add .";
+alias gap="git add . -p";
 alias gb="git branch";
 alias gbr="git branch remote"
 alias gfr="git remote update"
@@ -182,3 +194,9 @@ export PATH="$PNPM_HOME:$PATH"
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 [ -f /Users/georg.ekeberg/opt/etc/shrc ] && . /Users/georg.ekeberg/opt/etc/shrc
+
+# bun completions
+[ -s "/Users/georg.ekeberg/.bun/_bun" ] && source "/Users/georg.ekeberg/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
